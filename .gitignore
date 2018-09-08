@@ -1,0 +1,5 @@
+chronos
+
+!vendor
+vendor/*
+!vendor/vendor.json
