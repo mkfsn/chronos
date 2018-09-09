@@ -3,7 +3,7 @@ NAME = mkfsn/chronos
 all:
 
 build:
-	docker build . -rm -t $(NAME)
+	docker build . --rm -t $(NAME)
 
 push: login
 	docker push $(NAME)
