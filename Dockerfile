@@ -17,6 +17,9 @@ WORKDIR ${GOSRC}/${REPO}
 RUN govendor sync
 
 COPY . ${GOSRC}/${REPO}
+
+RUN go tool vet -all $(go list ./... | sed -e "s/github.com\/mkfsn\/chronos//g" -e "s/^\///g")
+RUN go test -v ./...
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app -v
 
 ENTRYPOINT ["/go/src/github.com/mkfsn/chronos/app"]
