@@ -11,6 +11,7 @@ var (
 	webhook = os.Getenv("SlackWebhookURL")
 )
 
+// Send sends message to slack via webhook
 func Send(message string) error {
 	var jsonStr = []byte(fmt.Sprintf(`{"text": "%s"}`, message))
 

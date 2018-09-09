@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// Job is a crontab like job
 type Job interface {
 	// Each job must have an unique name, and must be fit as an environment
 	// variable
@@ -19,6 +20,7 @@ type Job interface {
 	Run() error
 }
 
+// Run runs all defined jobs in separate go-routine
 func Run() {
 	// defined jobs
 	jobs := []Job{
