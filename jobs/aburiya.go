@@ -71,7 +71,10 @@ func (a *aburiyaJob) Run() error {
 }
 
 func (a *aburiyaJob) updateState(state map[string]string) bool {
-	if !a.compareState(state) {
+	l1, l2 := len(a.state), len(state)
+	if l1 == l2 && (l1 == 0 || l2 == 0) {
+		return false
+	} else if !a.compareState(state) {
 		return false
 	}
 
@@ -82,15 +85,15 @@ func (a *aburiyaJob) updateState(state map[string]string) bool {
 func (a *aburiyaJob) compareState(state map[string]string) bool {
 	for key, value := range a.state {
 		if v, ok := state[key]; !ok || v != value {
-			return false
+			return true
 		}
 	}
 
 	for key, value := range state {
 		if v, ok := a.state[key]; !ok || v != value {
-			return false
+			return true
 		}
 	}
 
-	return true
+	return false
 }
