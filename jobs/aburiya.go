@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mkfsn/chronos/slack"
+	"github.com/mkfsn/chronos/clients"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -64,7 +64,7 @@ func (a *aburiyaJob) Run() error {
 		if err != nil {
 			return err
 		}
-		slack.Send(string(b))
+		clients.Slack.Send(string(b))
 	}
 
 	return nil
